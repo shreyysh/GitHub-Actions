@@ -11,8 +11,11 @@ jobs :
         steps:
             - name : second-step
               run: |
-               echo "Step failed"
-               exit 1
+               echo "Step was successfull"
+               exit 0
+            #   run: |
+            #    echo "Step failed"
+            #    exit 1
             - name : third-step
               run: 
                 echo "Finally step triggered"
