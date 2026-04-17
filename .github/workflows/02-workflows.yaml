@@ -5,6 +5,7 @@ on :
   schedule:
     - cron: '*/5 * * * *' 
   workflow_dispatch:
+  #workflow_dispatch manually run a workflow from the GitHub UI, CLI, or API.
 
 jobs :
     echo:
