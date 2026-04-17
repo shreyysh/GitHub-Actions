@@ -4,8 +4,7 @@ on :
   pull_request:
   schedule:
     - cron: '*/5 * * * *' 
-  workflow_dispatch:              # manually run a workflow from the GitHub UI, CLI, or API.
-
+  workflow_dispatch:
 
 jobs :
     echo:
