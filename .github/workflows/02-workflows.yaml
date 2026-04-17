@@ -1,5 +1,12 @@
 name : 002-workflow-events
-on : push
+on : 
+  push:
+  pull_request:
+  schedule:
+    - cron: '*/5 * * * *' 
+  workflow_dispatch:              # manually run a workflow from the GitHub UI, CLI, or API.
+
+
 jobs :
     echo:
         runs-on: ubuntu-latest
