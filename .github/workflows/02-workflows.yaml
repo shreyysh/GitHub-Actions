@@ -1,15 +1,15 @@
-name : 002-workflow-events
-on : 
+name: 002-workflow-events
+on:
   push:
   pull_request:
-  schedule:
-    - cron: '*/5 * * * *' 
+  # schedule:
+  #   - cron: "*/5 * * * *"
   workflow_dispatch:
-  #workflow_dispatch manually run a workflow from the GitHub UI, CLI, or API.
+    #workflow_dispatch manually run a workflow from the GitHub UI, CLI, or API.And the dropdown option will be available only for default branch
 
-jobs :
-    echo:
-        runs-on: ubuntu-latest
-        steps:
-            - name : show the trigger
-              run : echo "I have been triggered by ${{github.event_name}} event."
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show the trigger
+        run: echo "I have been triggered by ${{github.event_name}} event."
