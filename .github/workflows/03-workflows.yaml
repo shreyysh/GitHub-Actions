@@ -3,10 +3,17 @@ on:
   push:
 
 jobs:
-  runner_job:
+  ubuntu_job:
     runs-on: ubuntu-latest
     steps:
       - name: show OS
-        run: |   # using vertical line as we will be using bash script
-          echo "This job runs on unbuntu"
+        run: |
+          echo "This job runs on Ubuntu"
+          echo "Finding runner using metadata so RUNNER is : $RUNNER_OS"
+  windows_job:
+    runs-on: windows-latest
+    steps:
+      - name: show OS
+        run: |
+          echo "This job runs on Windows"
           echo "Finding runner using metadata so RUNNER is : $RUNNER_OS"
