@@ -1,0 +1,12 @@
+name: 003-workflow-runners
+on:
+  push:
+
+jobs:
+  runner_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show OS
+        run: |   # using vertical line as we will be using bash script
+          echo "This job runs on unbuntu"
+          echo "Finding runner using metadata so RUNNER is : $RUNNER_OS"
