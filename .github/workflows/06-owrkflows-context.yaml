@@ -28,6 +28,8 @@ jobs:
               run: |
                 echo "Variable Name: ${{vars.my_secret}}"
             - name: retrieve env variable
+              env : 
+                OVERWRITTEN_VAR : 'steps'
               run: |
                 echo "Variable Name: ${{env.MY_WORKFLOW}}"
                 echo "Variable Name: ${{env.OVERWRITTEN_VAR}}"
