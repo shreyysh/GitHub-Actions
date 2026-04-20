@@ -1,5 +1,12 @@
 name: 006-workflow-context
-on: push
+run-name: 06-Context | DEBUG - ${{inputs.debug}}
+on: 
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
 jobs:
     wokflow-context-job:
         runs-on: ubuntu-latest
@@ -11,3 +18,6 @@ jobs:
                 echo "Workflow ${{github.workflow}}"
                 echo "Run id ${{github.run_id}}"
                 echo "Run attempt ${{github.run_attempt}}"
+            - name: retrieve vaiable
+              run: |
+                echo "Variable Name: ${{vars.my_secret}}"
