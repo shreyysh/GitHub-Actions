@@ -7,9 +7,15 @@ on:
             debug:
                 type: boolean
                 default: false
+env :
+    MY_WORKFLOW : 'workflow'
+    OVERWRITTEN_VAR : 'workflow'
 jobs:
     wokflow-context-job:
         runs-on: ubuntu-latest
+        env :
+            MY_WORKFLOW : 'jobs'
+            OVERWRITTEN_VAR : 'jobs'
         steps :
             - name: context-job
               run: |
@@ -18,6 +24,10 @@ jobs:
                 echo "Workflow ${{github.workflow}}"
                 echo "Run id ${{github.run_id}}"
                 echo "Run attempt ${{github.run_attempt}}"
-            - name: retrieve vaiable
+            - name: retrieve variable
               run: |
                 echo "Variable Name: ${{vars.my_secret}}"
+            - name: retrieve env variable
+              run: |
+                echo "Variable Name: ${{env.MY_WORKFLOW}}"
+                echo "Variable Name: ${{env.OVERWRITTEN_VAR}}"
