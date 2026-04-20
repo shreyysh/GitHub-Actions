@@ -1,0 +1,30 @@
+name: 005-workflow-event-filter
+on:
+  push:
+    branches:
+      - main
+      - 'release/**'
+    paths-ignore:
+      - 'doc/**'
+
+jobs:
+  ubuntu_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name : list-files
+        run: ls
+
+
+
+# Pull request
+# name: 005-workflow-event-filter
+# on:
+#   pull-requests:
+#     types : [clo]
+
+# jobs:
+#   ubuntu_job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name : list-files
+#         run: ls

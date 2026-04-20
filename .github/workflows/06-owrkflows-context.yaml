@@ -1,0 +1,13 @@
+name: 006-workflow-context
+on: push
+jobs:
+    wokflow-context-job:
+        runs-on: ubuntu-latest
+        steps :
+            - name: context-job
+              run: |
+                echo "Event Name: ${{github.env}}"
+                echo "Ref ${{github.ref}}"
+                echo "Workflow ${{github.workflow}}"
+                echo "Run id ${{github.run_id}}"
+                echo "Run attempt ${{github.run_attempt}}"
