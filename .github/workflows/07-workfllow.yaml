@@ -1,0 +1,24 @@
+name: 007-workflow-expression
+on:
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
+jobs:
+    workflow-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: first-expression-usecasae
+              if: ${{ inputs.debug }}
+              run: |
+                echo "Event Name: ${{github.event}}"
+                echo "Branch Name: ${{github.ref}}"
+                echo "Commit  SHA: ${{github.sha}}"
+                echo "OS Name: ${{runner.os}}"
+            - name: Second-expression-debug
+              if: ${{inputs.debug && github.ref == 'ref/head/dev'}}
+              run: echo "Step 2 has been executed"
+            - name: Else condition
+              run: echo "Code has been executed in else condition"

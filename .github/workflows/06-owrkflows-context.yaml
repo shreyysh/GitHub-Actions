@@ -24,6 +24,7 @@ jobs:
                 echo "Workflow ${{github.workflow}}"
                 echo "Run id ${{github.run_id}}"
                 echo "Run attempt ${{github.run_attempt}}"
+                echo "Run attempt ${{github.workflow}}"
             - name: retrieve variable
               run: |
                 echo "Variable Name: ${{vars.my_secret}}"
