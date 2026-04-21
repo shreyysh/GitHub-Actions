@@ -18,7 +18,7 @@ jobs:
                 echo "Commit  SHA: ${{github.sha}}"
                 echo "OS Name: ${{runner.os}}"
             - name: Second-expression-debug
-              if: ${{inputs.debug && github.ref == 'ref/head/dev'}}
+              if: ${{inputs.debug && github.ref == 'refs/heads/dev'}}
               run: echo "Step 2 has been executed"
             - name: Else condition
               run: echo "Code has been executed in else condition"
