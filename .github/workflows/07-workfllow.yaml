@@ -1,5 +1,5 @@
 name: 007-workflow-expression
-run-name: 007-workflow-expression | Debug - ${{inputs.debugn && 'ON' || 'OFF'}}
+run-name: 007-workflow-expression | Debug - ${{inputs.debug && 'ON' || 'OFF'}}
 on:
     # push:
     workflow_dispatch:
