@@ -15,6 +15,6 @@ jobs:
             - name: I will be execute
               if: ${{ failure()}}
               run: echo "I will print if previous step fails"
-            - name: I will be skipped
+            - name: I will be execute when cancelled
               if: ${{ cancelled()}}
               run: echo "I will print if workflow has been cancelled"
