@@ -1,4 +1,5 @@
 name: 007-workflow-expression
+run-name: 007-workflow-expression | Debug - ${{inputs.debugn && 'ON' || 'OFF'}}
 on:
     push:
     workflow_dispatch:
@@ -11,13 +12,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: first-expression-usecasae
-              if: ${{ inputs.debug }}
+            #first expression if conditon
+              if: ${{ inputs.debug }}  
               run: |
                 echo "Event Name: ${{github.event}}"
                 echo "Branch Name: ${{github.ref}}"
                 echo "Commit  SHA: ${{github.sha}}"
                 echo "OS Name: ${{runner.os}}"
             - name: Second-expression-debug
+            #second expression if conditon
               if: ${{inputs.debug && github.ref == 'refs/heads/dev'}}
               run: echo "Step 2 has been executed"
             - name: Else condition
