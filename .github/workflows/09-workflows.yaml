@@ -1,6 +1,6 @@
 name: 009-workflows-execution-flow
 on:
-    push:
+    # push:
     workflow_dispatch:
         inputs:
             deploy-image:
@@ -46,14 +46,19 @@ jobs:
               run: exit 1
     notification-job:
         runs-on: ubuntu-latest
-        needs: 
+        if: always()
+        needs:
             - image-push-job
             - deployment-job
         steps:
             - name: Notification-on-success
-              if: success()
+              if: ${{ needs.deployment-job.result == 'success' }}
               run: |
                 echo "Notifying user build was success"
+            - name: Notification-on-failure
+              if: ${{ needs.deployment-job.result == 'failure' }}
+              run: |
+                echo "Notifying user build was failed"
             - name: Notification-on-cancelled
               if: cancelled()
               run: |
