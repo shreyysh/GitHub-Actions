@@ -22,7 +22,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Build
-              run: echo "Building image ${{github.job}}}"
+              run: echo "Building image ${{github.path}}"
     job2:
         runs-on: ubuntu-latest
         if: ${{ !inputs.dry-run }}
