@@ -31,7 +31,7 @@ jobs:
             - name: Deploy
               run: |
                 echo "Building image ${{inputs.select_version}}"
-                echo "Environment deployment going on ${{inputs.select_version}}"
+                echo "Environment deployment going on ${{inputs.env}}"
 
 
 
