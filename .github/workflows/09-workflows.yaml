@@ -53,12 +53,16 @@ jobs:
         steps:
             - name: Notification-on-success
               if: ${{ needs.deployment-job.result == 'success' }}
-              run: |
+              run: |    
                 echo "Notifying user build was success"
             - name: Notification-on-failure
               if: ${{ needs.deployment-job.result == 'failure' }}
               run: |
                 echo "Notifying user build was failed"
+            - name: Notification-on-skipped
+              if: ${{ needs.deployment-job.result == 'skipped' }}
+              run: |
+                echo "Notifying user deployment was skipped"
             - name: Notification-on-cancelled
               if: cancelled()
               run: |
