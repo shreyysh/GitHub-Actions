@@ -1,0 +1,40 @@
+name : 010-workflow-inputs-outputs
+on:
+    workflow_dispatch:
+        inputs:
+            dry-run:
+                type: boolean
+                default: false
+                description: Whether dry run required
+            env:
+                type: environment
+                required: true
+                description: Select the environment
+            select_version:
+                type: choice
+                options:
+                    - V1
+                    - V2
+                    - V3
+                description: Select the version of deployment
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Build
+              run: |
+                echo "$GITHIB_OUTPUT"
+                echo "Building image ${{github.path}}"
+                echo "status=${{inputs.select_version}}" >> GITHIB_OUTPUT
+    job2:
+        runs-on: ubuntu-latest
+        if: ${{ !inputs.dry-run }}
+        needs: job1
+        steps:
+            - name: Deploy
+              run: |
+                echo "Building image ${{inputs.select_version}}"
+                echo "Environment deployment going on ${{inputs.env}}"
+
+
+
