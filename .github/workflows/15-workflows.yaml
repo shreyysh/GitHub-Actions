@@ -1,0 +1,19 @@
+name: 15-workflows-matrics
+on:
+    push:
+    workflow_dispatch:
+jobs:
+    job-maxtix:
+        runs-on: ${{matrix.os}}
+        strategy:
+            matrix:
+                node-version : [18.x,20.x,21.x]
+                os:
+                    - ubuntu-latest
+                    - windows-latest
+        steps:
+            - name : node install
+              uses : action/setup-node@V3
+              with : ${{matrix.node-version}}
+            - name : Perform some tests
+              run  : echo "Running test on ${{matrix.os}} and the version is ${{matrix.node-version}}"
