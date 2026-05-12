@@ -12,8 +12,17 @@ jobs:
               shape : [circle,square]
               size : [large,small]
               include:
-                  - color : red
-                    shape : triangle
+                - opacity : 50
+                - color : red
+                  opacity : 75
+                  shape : triangle
+                - color : green
+                  opacity : 75
+                  shape : square
+                  size : xlarge
+              exclude : 
+                - color : green
+                  shape : square
       steps:
           - name : Dummy step
             run  : echo "${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}"
