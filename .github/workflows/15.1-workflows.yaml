@@ -1,0 +1,18 @@
+name: 15.1-matrics-include-exclude
+on:
+    push:
+    workflow_dispatch:
+jobs:
+    job-include-example:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                color : [red,green]
+                shape : [circle,square]
+                size : [large,small]
+                include:
+                    - color : red
+                      shape : triangle
+        steps:
+            - name : Dummy step
+              run  : echo "${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}"
