@@ -1,6 +1,6 @@
 name: 15.1-matrics-include-exclude
 on:
-    push:
+    # push:
     workflow_dispatch:
 jobs:
     job-include-example:
@@ -22,7 +22,7 @@ jobs:
                   size : xlarge
               exclude : 
                 - color : green
-                  shape : square
+                  shape : square  # Here we have excluded all the combinations of green-square
       steps:
           - name : Dummy step
             run  : echo "${{matrix.color}}-${{matrix.shape}}-${{matrix.size}}"
