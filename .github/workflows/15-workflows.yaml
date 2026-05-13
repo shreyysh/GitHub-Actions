@@ -15,12 +15,13 @@ jobs:
     Deploy-image-qa:
         runs-on : ubuntu-latest
         environment: QA
+        needs: Env-details
         env:
             my-variable-status: ${{vars.TEST_VARIABLE||'deafult value'}}
         steps:
             - name : Selected env
               run: echo "The env is ${{inputs.select-env}}"
-    Deploy-image-prod:
+    Deploy-image-preprod:
         runs-on : ubuntu-latest
         environment: Preprod
         env:
