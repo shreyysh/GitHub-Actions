@@ -13,6 +13,7 @@ jobs:
               run: echo "The env is ${{inputs.select-env}}"
 
     Deploy-image-qa:
+        if: ${{ inputs.select-env == 'QA' }}
         runs-on : ubuntu-latest
         environment: QA
         needs: Env-details
@@ -20,10 +21,14 @@ jobs:
             my-variable-status: ${{vars.TEST_VARIABLE||'deafult value'}}
         steps:
             - name : Selected env
-              run: echo "The env is ${{inputs.select-env}}"
+              run: |
+                echo "My variable status has been ${{env.my-variable-status}}"
+                echo "The env is ${{inputs.select-env}}"
     Deploy-image-preprod:
+        if: ${{ inputs.select-env == 'Preprod' }}
         runs-on : ubuntu-latest
         environment: Preprod
+        needs: Env-details
         env:
             my-variable-status: ${{vars.TEST_VARIABLE||'deafult value'}}
         steps:
