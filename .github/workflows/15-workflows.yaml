@@ -22,7 +22,7 @@ jobs:
         steps:
             - name : Selected env
               run: |
-                echo "My variable status has been ${{env.my-variable-status}}"
+                echo "My variable status has been ${{vars.my-variable-status}}"
                 echo "The env is ${{inputs.select-env}}"
     Deploy-image-preprod:
         if: ${{ inputs.select-env == 'Preprod' }}
