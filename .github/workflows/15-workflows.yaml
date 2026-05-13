@@ -1,29 +1,30 @@
-name: 15-workflows-matrics
-on:
-    push:
+name: 15-workflows-environments
+on :
     workflow_dispatch:
+        inputs:
+            select-env:
+             type: environment
+             default: QA
 jobs:
-    job-maxtix:
-        runs-on: ${{matrix.os}}
-        strategy:
-            matrix:
-                node-version : [18.x,20.x,21.x]
-                os:
-                    - ubuntu-latest
-                    - windows-latest
-                include:
-                    - os : ubuntu-latest
-                      node-version : 16.x
-                    - os : ubuntu-latest
-                      node-version : 21.x
-                      tag : experimental
-
+    Env-details:
+        runs-on : ubuntu-latest
         steps:
-            - name : node install
-              uses : action/setup-node@V3
-              with : ${{matrix.node-version}}
-            - name : Fail job
-              if   : matrix.tag == 'experimental'
-              run  : exit1
-            - name : Perform some tests
-              run  : echo "Running test on ${{matrix.os}} and the version is ${{matrix.node-version}}"
+            - name : Selected env
+              run: echo "The env is ${{inputs.select-env}}"
+
+    Deploy-image-qa:
+        runs-on : ubuntu-latest
+        environment: QA
+        env:
+            my-variable-status: ${{vars.TEST_VARIABLE||'deafult value'}}
+        steps:
+            - name : Selected env
+              run: echo "The env is ${{inputs.select-env}}"
+    Deploy-image-prod:
+        runs-on : ubuntu-latest
+        environment: Preprod
+        env:
+            my-variable-status: ${{vars.TEST_VARIABLE||'deafult value'}}
+        steps:
+            - name : Selected env
+              run: echo "The env is ${{inputs.select-env}}"
