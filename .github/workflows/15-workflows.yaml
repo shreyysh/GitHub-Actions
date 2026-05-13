@@ -18,7 +18,7 @@ jobs:
         environment: QA
         needs: Env-details
         env:
-            my-variable-status: ${{vars.TEST_VARIABLE||'deafult value'}}
+            my-variable-status: ${{secrets.TEST_VARIABLE||'deafult value'}}
         steps:
             - name : Selected env
               run: |
@@ -34,5 +34,5 @@ jobs:
         steps:
             - name : Selected env
               run: |
-                echo "My variable value is ${{env.my-variable-status}}"
+                echo "My variable value has been ${{env.my-variable-status}}"
                 echo "The env is ${{inputs.select-env}}"
